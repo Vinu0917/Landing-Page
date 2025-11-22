@@ -1,2 +1,2 @@
 # Landing-Page
-LAnding Page for Hela Bojunhala Mobile Application
+Landing Page for Hela Bojunhala Mobile Application
