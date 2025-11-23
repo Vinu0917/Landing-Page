@@ -46,16 +46,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var spySections = document.querySelectorAll("section[id]");
   var spy = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      var id = entry.target.getAttribute("id");
-      var link = nav.querySelector('a[href="#' + id + '"]');
-      if (!link) return;
-      if (entry.isIntersecting) {
-        nav.querySelectorAll("a").forEach(function (l) { l.classList.remove("active"); });
-        link.classList.add("active");
+    // Get all sections and find the one currently in view
+    let current = "";
+    const pageYOffset = window.pageYOffset;
+    
+    spySections.forEach((section) => {
+      const sectionTop = section.offsetTop - 100; // 100px offset from top
+      const sectionHeight = section.offsetHeight;
+      
+      if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+        current = section.getAttribute("id");
       }
     });
-  }, { threshold: 0.6 });
+
+    // Update active state for all nav links
+    nav.querySelectorAll("a").forEach((link) => {
+      link.classList.toggle("active", 
+        link.getAttribute("href") === `#${current}`
+      );
+    });
+  }, { 
+    threshold: 0.1,  // Lower threshold for better detection
+    rootMargin: "0px 0px -80% 0px"  // Consider element in view when it's 80% from bottom
+  });
   spySections.forEach(function (s) { spy.observe(s); });
 
   var revealItems = document.querySelectorAll(".reveal");
@@ -216,7 +229,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function composeMailto(form) {
-    var to = form.getAttribute("data-mailto") || "contact@example.com";
+    var to = form.getAttribute("data-mailto") || "futureforge82@gmail.com";
     var name = form.querySelector('[name="from_name"]').value.trim();
     var email = form.querySelector('[name="reply_to"]').value.trim();
     var message = form.querySelector('[name="message"]').value.trim();
