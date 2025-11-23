@@ -4,18 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hela Bojunhala | Smart Delivery & Business Management</title>
+    <meta name="description" content="Unified digital platform connecting customers, cashiers, drivers, vendors, and admins to streamline Hela Bojunhala operations." />
+    <meta name="keywords" content="Hela Bojunhala, delivery, business management, admin, cashier, driver, customer portal" />
+    <meta property="og:title" content="Hela Bojunhala | Smart Delivery & Business Management" />
+    <meta property="og:description" content="Streamline operations with modern portals, analytics, and real-time coordination." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2344a346'/%3E%3Ctext x='50' y='60' font-size='50' text-anchor='middle' fill='white' font-family='Inter'%3EHB%3C/text%3E%3C/svg%3E" />
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+    <a class="skip-link" href="#overview">Skip to content</a>
     <!-- HEADER -->
     <header>
         <div class="logo">Hela Bojunhala</div>
-        <nav>
+        <button class="theme-toggle" aria-label="Toggle dark mode">◐</button>
+        <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+        <nav id="site-nav">
             <a href="#overview">Overview</a>
+            <a href="#features">Features</a>
             <a href="#portals">Portals</a>
             <a href="#impact">Impact</a>
             <a href="#workflow">How It Works</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#technologies">Technologies</a>
+            <a href="#team">Team</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#faq">FAQ</a>
+            <a href="#cta">Contact</a>
         </nav>
     </header>
 
@@ -23,8 +43,17 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Smart Delivery & Business Management System</h1>
-            <p>A modern solution developed to streamline and digitalize Hela Bojunhala operations across all branch levels.</p>
-            <a href="#overview" class="cta-btn">Explore the System</a>
+            <p class="hero-sub">Delivery • Management • Insights</p>
+            <p class="hero-rotator"><span id="rotator"></span></p>
+            <div class="cta-group">
+                <a href="#overview" class="cta-btn">Explore the System</a>
+                <a href="#cta" class="cta-btn ghost">Contact Us</a>
+            </div>
+        </div>
+        <div class="decor">
+            <span class="blob b1"></span>
+            <span class="blob b2"></span>
+            <span class="blob b3"></span>
         </div>
     </section>
 
@@ -34,19 +63,27 @@
             <div class="card">
                 <h2>The Problem</h2>
                 <p>Traditional Hela Bojunhala operations rely heavily on manual processes, resulting in slow service, poor coordination, lack of transparency, and limited digital support.</p>
+                <ul class="list">
+                    <li>Manual order taking leads to inefficiency and errors.</li>
+                    <li>Limited visibility into stock and order status across branches.</li>
+                    <li>Slow communication between cashiers, drivers, and admins.</li>
+                    <li>Difficulty scaling operations to multiple locations.</li>
+                </ul>
             </div>
 
             <div class="card green">
                 <h2>The Solution</h2>
-                <p>A unified digital platform that connects customers, cashiers, drivers, vendors, and administrators to automate workflow and optimize operations.</p>
+                <p>Our system digitizes these processes to improve speed, accuracy, transparency, and customer satisfaction.</p>
             </div>
         </div>
     </section>
 
     <!-- SYSTEM OVERVIEW -->
-    <section id="overview" class="overview">
-        <h2>System Overview</h2>
-        <p class="section-text">Our system consists of four interconnected portals designed to cover the complete workflow of Hela Bojunhala services.</p>
+    <section id="overview" class="overview reveal">
+        <h2>Hela Bojunhala – Smart Delivery & Business Management System</h2>
+        <p class="section-text">We are planning and developing a mobile application using React Native to bring authentic Hela Bojun foods right to your doorstep.</p>
+        <p class="section-text">Our system modernizes Hela Bojunhala operations by automating order management, payments, and delivery coordination across multiple branches.</p>
+        <p class="section-text"><strong>Connecting Customers, Cashiers, Drivers, and Admins seamlessly.</strong></p>
 
         <div class="overview-grid">
             <div class="box">
@@ -71,31 +108,103 @@
         </div>
     </section>
 
+    <section id="features" class="features reveal">
+        <h2>Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Online Ordering</h3>
+                <p>Seamless ordering with secure payments and order tracking.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Real-time Coordination</h3>
+                <p>Live status updates across cashier, kitchen, and drivers.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Vendor Management</h3>
+                <p>Centralized vendor onboarding and performance review.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Analytics</h3>
+                <p>Reports for demand, delivery, and operational efficiency.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Notifications</h3>
+                <p>Event-based alerts via mobile and email.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Scalability</h3>
+                <p>Built to support multi-branch rollouts.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portals" class="portals reveal">
+        <h2>Main Portals</h2>
+        <div class="portals-grid">
+            <div class="portal-card">
+                <h3>Customer Portal (React Native)</h3>
+                <ul class="list">
+                    <li>Browse menu filtered by ingredients, health preferences, availability.</li>
+                    <li>Place orders directly to a selected branch.</li>
+                    <li>Track order status in real-time.</li>
+                </ul>
+            </div>
+            <div class="portal-card">
+                <h3>Cashier Portal</h3>
+                <ul class="list">
+                    <li>Manage incoming orders from all branches.</li>
+                    <li>Handle payments, generate receipts, update order status.</li>
+                    <li>Communicate with drivers efficiently.</li>
+                </ul>
+            </div>
+            <div class="portal-card">
+                <h3>Driver Portal</h3>
+                <ul class="list">
+                    <li>Receive automatic order assignments.</li>
+                    <li>Track delivery routes and update delivery status.</li>
+                    <li>View branch-wise pending and completed deliveries.</li>
+                </ul>
+            </div>
+            <div class="portal-card">
+                <h3>Admin Portal</h3>
+                <ul class="list">
+                    <li>Analyze sales, orders, and driver performance across branches.</li>
+                    <li>Generate reports for branch management.</li>
+                    <li>Monitor system health and ensure smooth operations.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
     <!-- IMPACT SECTION -->
-    <section id="impact" class="impact">
+    <section id="impact" class="impact reveal">
         <h2>System Impact</h2>
         <div class="impact-grid">
             <div class="impact-card">
+                <div class="count" data-target="75">0</div>
                 <h3>Streamlined Operations</h3>
-                <p>Reduces manual tasks and automates essential workflows.</p>
+                <p>% reduction in manual tasks.</p>
             </div>
             <div class="impact-card">
+                <div class="count" data-target="50">0</div>
                 <h3>Faster Service</h3>
-                <p>Improves delivery time and order processing efficiency.</p>
+                <p>% faster order processing.</p>
             </div>
             <div class="impact-card">
-                <h3>Better Decision Making</h3>
-                <p>Provides reports and analytics to support strategic decisions.</p>
+                <div class="count" data-target="35">0</div>
+                <h3>Better Decisions</h3>
+                <p>% improvement from analytics-driven insights.</p>
             </div>
             <div class="impact-card">
-                <h3>Enhanced User Experience</h3>
-                <p>Smooth and efficient experience for all user types.</p>
+                <div class="count" data-target="95">0</div>
+                <h3>Enhanced Experience</h3>
+                <p>% satisfaction across user roles.</p>
             </div>
         </div>
     </section>
 
     <!-- HOW IT WORKS -->
-    <section id="workflow" class="workflow">
+    <section id="workflow" class="workflow reveal">
         <h2>How the System Works</h2>
 
         <div class="steps">
@@ -121,8 +230,149 @@
         </div>
     </section>
 
+    <section id="architecture" class="architecture reveal">
+        <h2>Architecture / System Design</h2>
+        <div class="arch-grid">
+            <div class="box">
+                <h3>Frontend</h3>
+                <p>React Native mobile app for all portals.</p>
+            </div>
+            <div class="box">
+                <h3>Backend</h3>
+                <p>Node.js with Express.js providing RESTful APIs.</p>
+            </div>
+            <div class="box">
+                <h3>Database</h3>
+                <p>MySQL storing users, orders, branches, and analytics.</p>
+            </div>
+            <div class="box">
+                <h3>Flow</h3>
+                <p>Customer → Cashier → Driver → Admin → Analytics.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="technologies" class="technologies reveal">
+        <h2>Technologies / Tools</h2>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <h3>Frontend</h3>
+                <ul class="list">
+                    <li>React Native – Cross-platform mobile app development.</li>
+                    <li>React Navigation – Smooth multi-screen navigation (stack, tabs, drawer).</li>
+                    <li>Axios – HTTP client with interceptors for JWT auth.</li>
+                </ul>
+            </div>
+            <div class="tech-card">
+                <h3>Backend</h3>
+                <ul class="list">
+                    <li>Node.js / Express.js – RESTful API server.</li>
+                    <li>JWT – Secure, stateless authentication and role-based access control.</li>
+                    <li>Sequelize / Knex – ORM/query builder for MySQL with migrations.</li>
+                </ul>
+            </div>
+            <div class="tech-card">
+                <h3>Database</h3>
+                <ul class="list">
+                    <li>MySQL – Persistent storage for orders, users, branch details.</li>
+                </ul>
+            </div>
+            <div class="tech-card">
+                <h3>Tools</h3>
+                <ul class="list">
+                    <li>VS Code, Postman, GitHub.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials reveal">
+        <h2>What People Say</h2>
+        <div class="slider" aria-live="polite">
+            <div class="slide active">
+                <p>“Orders are faster and more reliable. Our customers love it.”</p>
+                <div class="author">Branch Manager</div>
+            </div>
+            <div class="slide">
+                <p>“Coordinating drivers is effortless with real-time updates.”</p>
+                <div class="author">Lead Cashier</div>
+            </div>
+            <div class="slide">
+                <p>“The analytics helped us optimize menus and staffing.”</p>
+                <div class="author">Operations Admin</div>
+            </div>
+            <div class="slider-controls">
+                <button class="prev" aria-label="Previous">‹</button>
+                <button class="next" aria-label="Next">›</button>
+            </div>
+            <div class="dots" role="tablist"></div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq reveal">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">How do customers place orders?</button>
+                <div class="faq-answer">Customers use the mobile app to browse menus, pay securely, and track deliveries.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">Can admins manage vendors and reports?</button>
+                <div class="faq-answer">Yes. The admin portal centralizes vendor management and provides analytics dashboards.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">Is the system scalable for multiple branches?</button>
+                <div class="faq-answer">The platform supports multi-branch deployments with role-based access and centralized control.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="team reveal">
+        <h2>Team / Contributors</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <h3>Vinuji Balasooriya</h3>
+                <p>Project Lead / Frontend Developer</p>
+            </div>
+            <div class="team-card">
+                <h3>Team Members</h3>
+                <p>Backend, database, testing, and documentation roles</p>
+            </div>
+            <div class="team-card">
+                <h3>Supervisor</h3>
+                <p>Appreciation for guidance and support</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta" class="cta reveal">
+        <h2>Contact / Feedback</h2>
+        <p>Email: <a href="mailto:example@university.lk">example@university.lk</a></p>
+        <p>GitHub Repository: <a href="#" target="_blank" rel="noopener">View Code</a></p>
+        <form id="feedback-form" class="feedback-form" novalidate>
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Your Email" required />
+            <textarea name="message" placeholder="Your Feedback" rows="4" required></textarea>
+            <button type="submit" class="cta-btn">Send Feedback</button>
+        </form>
+    </section>
+
     <footer>
-        <p>© 2025 Hela Bojunhala Smart Delivery & Business Management System</p>
+        <div class="footer-grid">
+            <div class="footer-brand">Hela Bojunhala</div>
+            <div class="footer-links">
+                <a href="#overview">Overview</a>
+                <a href="#features">Features</a>
+                <a href="#impact">Impact</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" aria-label="LinkedIn">in</a>
+                <a href="#" aria-label="Facebook">fb</a>
+                <a href="#" aria-label="WhatsApp">wa</a>
+            </div>
+        </div>
+        <p>© 2025 FutureForge - Hela Bojunhala Smart Delivery & Business Management System</p>
     </footer>
 
     <script src="script.js"></script>
