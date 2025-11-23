@@ -10,7 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
   var dotsContainer = document.querySelector(".testimonials .dots");
   var counters = document.querySelectorAll(".impact .count");
   var faqQuestions = document.querySelectorAll(".faq-question");
-  var feedbackForm = document.getElementById("feedback-form");
+  var contactForm = document.getElementById("contact-form");
+  var hero = document.querySelector(".hero");
+  var phone = document.querySelector(".phone-mock");
 
   var storedTheme = localStorage.getItem("theme");
   if (storedTheme) document.documentElement.setAttribute("data-theme", storedTheme);
@@ -138,6 +140,72 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(nextSlide, 5000);
   }
 
+  var tsi = 0;
+  var tDots = [];
+  var step = 0;
+  var teamSlider = document.querySelector(".team-slider");
+  var teamTrack = document.querySelector(".team-slider .team-track");
+  var teamCards = document.querySelectorAll(".team-slider .member-card");
+  var teamPrev = document.querySelector(".team .slider-controls .prev");
+  var teamNext = document.querySelector(".team .slider-controls .next");
+  var teamDotsContainer = document.querySelector(".team .dots");
+  function getGap() {
+    var v = getComputedStyle(teamTrack).gap;
+    return v ? Math.round(parseFloat(v)) : 24;
+  }
+  function getCenterOffset() {
+    var sliderW = teamSlider ? teamSlider.clientWidth : 0;
+    var cardW = teamCards.length ? Math.round(teamCards[0].getBoundingClientRect().width) : 0;
+    return Math.round((sliderW - cardW) / 2);
+  }
+  function calcStep() {
+    if (!teamCards.length) return;
+    var gap = getGap();
+    var w = Math.round(teamCards[0].getBoundingClientRect().width);
+    step = w + gap;
+  }
+  function showTeamSlide(i) {
+    if (!teamTrack) return;
+    tsi = Math.max(0, Math.min(i, teamCards.length - 1));
+    var centerOffset = getCenterOffset();
+    teamTrack.style.transform = "translateX(" + (centerOffset - tsi * step) + "px)";
+    tDots.forEach(function (d, idx) { d.classList.toggle("active", idx === tsi); });
+    teamCards.forEach(function (c, idx) { c.classList.toggle("active", idx === tsi); });
+  }
+  function nextTeam() { showTeamSlide(tsi + 1); }
+  function prevTeam() { showTeamSlide(tsi - 1); }
+  function initTeamDots() {
+    if (!teamDotsContainer) return;
+    tDots = [];
+    teamDotsContainer.innerHTML = "";
+    teamCards.forEach(function (_, idx) {
+      var b = document.createElement("button");
+      if (idx === 0) b.classList.add("active");
+      b.addEventListener("click", function () { showTeamSlide(idx); });
+      teamDotsContainer.appendChild(b);
+      tDots.push(b);
+    });
+  }
+  function initTeamSlider() {
+    if (!teamSlider || !teamTrack || !teamCards.length) return;
+    calcStep();
+    initTeamDots();
+    showTeamSlide(Math.floor(teamCards.length / 2));
+    if (teamNext) teamNext.addEventListener("click", nextTeam);
+    if (teamPrev) teamPrev.addEventListener("click", prevTeam);
+    teamSlider.setAttribute("tabindex", "0");
+    teamSlider.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") nextTeam();
+      else if (e.key === "ArrowLeft") prevTeam();
+    });
+    var auto = setInterval(nextTeam, 6000);
+    teamSlider.addEventListener("mouseenter", function () { clearInterval(auto); });
+    teamSlider.addEventListener("mouseleave", function () { auto = setInterval(nextTeam, 6000); });
+    
+    window.addEventListener("resize", function () { calcStep(); showTeamSlide(tsi); });
+  }
+  initTeamSlider();
+
   faqQuestions.forEach(function (btn) {
     btn.addEventListener("click", function () {
       var item = btn.parentElement;
@@ -147,18 +215,44 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  if (feedbackForm) {
-    feedbackForm.addEventListener("submit", function (e) {
+  function composeMailto(form) {
+    var to = form.getAttribute("data-mailto") || "contact@example.com";
+    var name = form.querySelector('[name="from_name"]').value.trim();
+    var email = form.querySelector('[name="reply_to"]').value.trim();
+    var message = form.querySelector('[name="message"]').value.trim();
+    if (!name || !email || !message) { alert("Please fill in all fields."); return null; }
+    var subject = "Website Contact: " + name;
+    var body = "Name: " + name + "\nEmail: " + email + "\n\n" + message;
+    var url = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    return url;
+  }
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      var name = feedbackForm.querySelector('[name="name"]').value.trim();
-      var email = feedbackForm.querySelector('[name="email"]').value.trim();
-      var message = feedbackForm.querySelector('[name="message"]').value.trim();
-      if (!name || !email || !message) {
-        alert("Please fill in all fields.");
-        return;
-      }
-      alert("Thank you for your feedback!");
-      feedbackForm.reset();
+      var mailto = composeMailto(contactForm);
+      if (mailto) window.location.href = mailto;
     });
+  }
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function handleHeroMove(e) {
+    if (reduceMotion || !phone || !hero) return;
+    var rect = hero.getBoundingClientRect();
+    var x = (e.clientX - rect.left) / rect.width;
+    var y = (e.clientY - rect.top) / rect.height;
+    var dx = (x - 0.5) * 20;
+    var dy = (y - 0.5) * 20;
+    var rx = (0.5 - y) * 6;
+    var ry = (x - 0.5) * 10;
+    phone.style.transform = "translate3d(" + dx + "px," + dy + "px,0) rotateX(" + rx + "deg) rotateY(" + ry + "deg)";
+  }
+  function resetHeroMove() {
+    if (!phone) return;
+    phone.style.transform = "translate3d(0,0,0) rotateX(0) rotateY(0)";
+  }
+  if (hero) {
+    hero.addEventListener("mousemove", handleHeroMove);
+    hero.addEventListener("mouseleave", resetHeroMove);
   }
 });
