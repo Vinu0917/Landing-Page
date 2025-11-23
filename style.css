@@ -1,0 +1,172 @@
+/* --- Global Styling --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #ffffff;
+    color: #222;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #44a346;
+}
+
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #222;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #44a346;
+}
+
+/* Hero */
+.hero {
+    height: 80vh;
+    background: linear-gradient(120deg, #44a346, #2f7e30);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 40px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.cta-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 28px;
+    background: white;
+    color: #44a346;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.cta-btn:hover {
+    background: #e9e9e9;
+}
+
+/* Sections */
+section {
+    padding: 70px 40px;
+}
+
+/* Problem-Solution */
+.problem-solution .container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1;
+    padding: 25px;
+    border-radius: 10px;
+    background: #f2f2f2;
+}
+
+.green {
+    background: #44a346;
+    color: white;
+}
+
+/* Overview Grid */
+.overview h2, .impact h2, .workflow h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section-text {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.box {
+    padding: 20px;
+    background: #f7f7f7;
+    border-left: 6px solid #44a346;
+    border-radius: 10px;
+}
+
+/* Impact */
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.impact-card {
+    padding: 25px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+/* Workflow Steps */
+.steps {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.step {
+    text-align: center;
+    width: 200px;
+}
+
+.step span {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #44a346;
+    color: white;
+    font-size: 20px;
+    line-height: 45px;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #f2f2f2;
+    color: #444;
+}
