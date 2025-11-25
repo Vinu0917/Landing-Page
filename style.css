@@ -180,6 +180,9 @@ nav a:hover, nav a.active {
 }
 
 .cta-btn.ghost { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: transparent; 
     color: #fff; 
     border: 2px solid rgba(255,255,255,0.8);
