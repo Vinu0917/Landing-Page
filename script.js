@@ -1,3 +1,7 @@
+if (history.scrollRestoration) {
+  history.scrollRestoration = 'manual';
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   var themeButton = document.querySelector(".theme-toggle");
   var menuButton = document.querySelector(".menu-toggle");
