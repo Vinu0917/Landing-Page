@@ -153,71 +153,6 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(nextSlide, 5000);
   }
 
-  var tsi = 0;
-  var tDots = [];
-  var step = 0;
-  var teamSlider = document.querySelector(".team-slider");
-  var teamTrack = document.querySelector(".team-slider .team-track");
-  var teamCards = document.querySelectorAll(".team-slider .member-card");
-  var teamPrev = document.querySelector(".team .slider-controls .prev");
-  var teamNext = document.querySelector(".team .slider-controls .next");
-  var teamDotsContainer = document.querySelector(".team .dots");
-  function getGap() {
-    var v = getComputedStyle(teamTrack).gap;
-    return v ? Math.round(parseFloat(v)) : 24;
-  }
-  function getCenterOffset() {
-    var sliderW = teamSlider ? teamSlider.clientWidth : 0;
-    var cardW = teamCards.length ? Math.round(teamCards[0].getBoundingClientRect().width) : 0;
-    return Math.round((sliderW - cardW) / 2);
-  }
-  function calcStep() {
-    if (!teamCards.length) return;
-    var gap = getGap();
-    var w = Math.round(teamCards[0].getBoundingClientRect().width);
-    step = w + gap;
-  }
-  function showTeamSlide(i) {
-    if (!teamTrack) return;
-    tsi = Math.max(0, Math.min(i, teamCards.length - 1));
-    var centerOffset = getCenterOffset();
-    teamTrack.style.transform = "translateX(" + (centerOffset - tsi * step) + "px)";
-    tDots.forEach(function (d, idx) { d.classList.toggle("active", idx === tsi); });
-    teamCards.forEach(function (c, idx) { c.classList.toggle("active", idx === tsi); });
-  }
-  function nextTeam() { showTeamSlide(tsi + 1); }
-  function prevTeam() { showTeamSlide(tsi - 1); }
-  function initTeamDots() {
-    if (!teamDotsContainer) return;
-    tDots = [];
-    teamDotsContainer.innerHTML = "";
-    teamCards.forEach(function (_, idx) {
-      var b = document.createElement("button");
-      if (idx === 0) b.classList.add("active");
-      b.addEventListener("click", function () { showTeamSlide(idx); });
-      teamDotsContainer.appendChild(b);
-      tDots.push(b);
-    });
-  }
-  function initTeamSlider() {
-    if (!teamSlider || !teamTrack || !teamCards.length) return;
-    calcStep();
-    initTeamDots();
-    showTeamSlide(Math.floor(teamCards.length / 2));
-    if (teamNext) teamNext.addEventListener("click", nextTeam);
-    if (teamPrev) teamPrev.addEventListener("click", prevTeam);
-    teamSlider.setAttribute("tabindex", "0");
-    teamSlider.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowRight") nextTeam();
-      else if (e.key === "ArrowLeft") prevTeam();
-    });
-    var auto = setInterval(nextTeam, 6000);
-    teamSlider.addEventListener("mouseenter", function () { clearInterval(auto); });
-    teamSlider.addEventListener("mouseleave", function () { auto = setInterval(nextTeam, 6000); });
-    
-    window.addEventListener("resize", function () { calcStep(); showTeamSlide(tsi); });
-  }
-  initTeamSlider();
 
   faqQuestions.forEach(function (btn) {
     btn.addEventListener("click", function () {
@@ -228,23 +163,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  function composeMailto(form) {
-    var to = form.getAttribute("data-mailto") || "futureforge82@gmail.com";
-    var name = form.querySelector('[name="from_name"]').value.trim();
-    var email = form.querySelector('[name="reply_to"]').value.trim();
-    var message = form.querySelector('[name="message"]').value.trim();
-    if (!name || !email || !message) { alert("Please fill in all fields."); return null; }
-    var subject = "Website Contact: " + name;
-    var body = "Name: " + name + "\nEmail: " + email + "\n\n" + message;
-    var url = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-    return url;
-  }
-
   if (contactForm) {
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      var mailto = composeMailto(contactForm);
-      if (mailto) window.location.href = mailto;
+
+      // these IDs from the previous steps
+      emailjs.sendForm('service_6wy1ybx', 'template_kr9iiyk', this)
+        .then(function() {
+            alert('Your message has been sent successfully!');
+            contactForm.reset(); // Reset form after successful submission
+        }, function(error) {
+            alert('Failed to send the message. Please try again later.');
+        });
     });
   }
 

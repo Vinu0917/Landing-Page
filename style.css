@@ -55,7 +55,7 @@ header {
 header .logo {
     display: flex;
     align-items: center;
-    height: 40px; /* Adjust as needed */
+    height: 35px; /* Adjust as needed */
 }
 
 header .logo img {
@@ -257,7 +257,7 @@ section {
 }
 
 /* Overview Grid */
-.overview h2, .impact h2, .workflow h2, .features h2, .testimonials h2, .faq h2, .cta h2, .team h2 {
+.overview h2, .impact h2, .workflow h2, .features h2, .testimonials h2, .faq h2, .cta h2 {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -387,7 +387,6 @@ section {
 /* Remove default list styling from all cards */
 .feature-card ul,
 .workflow-card ul,
-.member-card ul,
 .box ul {
     list-style: none;
     padding-left: 0;
@@ -618,11 +617,15 @@ footer {
     margin-bottom: 40px;
 }
 
-.footer-brand .footer-logo { 
-    font-weight: 800; 
-    color: var(--primary); 
-    font-size: 22px; 
+.footer-brand .footer-logo {
+    height: 35px;
     margin-bottom: 12px;
+}
+
+.footer-brand .footer-logo img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
 }
 
 .footer-brand p { 
@@ -713,32 +716,115 @@ footer {
     color: var(--muted); 
 }
 
-.reveal { opacity: 0; transform: translateY(20px); }
-.reveal.is-visible { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease, transform 0.5s ease; }
+/* --- Scroll Animations --- */
 
-/* Staggered reveal for items */
-.features.reveal .feature-card,
-.impact.reveal .impact-card,
-.workflow.reveal .step { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
-.features.reveal.is-visible .feature-card,
-.impact.reveal.is-visible .impact-card,
-.workflow.reveal.is-visible .step { opacity: 1; transform: translateY(0); }
-.features.reveal.is-visible .feature-card:nth-child(1) { transition-delay: 0.05s; }
-.features.reveal.is-visible .feature-card:nth-child(2) { transition-delay: 0.1s; }
-.features.reveal.is-visible .feature-card:nth-child(3) { transition-delay: 0.15s; }
-.features.reveal.is-visible .feature-card:nth-child(4) { transition-delay: 0.2s; }
-.features.reveal.is-visible .feature-card:nth-child(5) { transition-delay: 0.25s; }
-.impact.reveal.is-visible .impact-card:nth-child(1) { transition-delay: 0.05s; }
-.impact.reveal.is-visible .impact-card:nth-child(2) { transition-delay: 0.1s; }
-.impact.reveal.is-visible .impact-card:nth-child(3) { transition-delay: 0.15s; }
-.impact.reveal.is-visible .impact-card:nth-child(4) { transition-delay: 0.2s; }
-.workflow.reveal.is-visible .step:nth-child(1) { transition-delay: 0.05s; }
-.workflow.reveal.is-visible .step:nth-child(2) { transition-delay: 0.1s; }
-.workflow.reveal.is-visible .step:nth-child(3) { transition-delay: 0.15s; }
-.workflow.reveal.is-visible .step:nth-child(4) { transition-delay: 0.2s; }
+/* Default state for all reveal items */
+.reveal {
+    opacity: 0;
+}
 
-.portals-grid, .arch-grid, .tech-grid, .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-.portal-card, .tech-card, .team-card { background: var(--card); border-radius: 12px; box-shadow: var(--shadow); padding: 20px; }
+/* Generic fade-in-up for sections that don't have custom animations */
+.reveal.is-visible {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Custom animation for Overview section */
+#overview.reveal .overview-media,
+#overview.reveal .box {
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+#overview.reveal .overview-media {
+    transform: translateX(-40px);
+}
+
+#overview.reveal .box {
+    transform: translateX(40px);
+}
+
+#overview.reveal.is-visible .overview-media,
+#overview.reveal.is-visible .box {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Stagger for overview boxes */
+#overview.reveal.is-visible .box:nth-child(1) { transition-delay: 0.1s; }
+#overview.reveal.is-visible .box:nth-child(2) { transition-delay: 0.2s; }
+#overview.reveal.is-visible .box:nth-child(3) { transition-delay: 0.3s; }
+
+
+/* Custom animation for Features section cards */
+.features.reveal .feature-card {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.features.reveal.is-visible .feature-card {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Stagger for feature cards */
+.features.reveal.is-visible .feature-card:nth-child(1) { transition-delay: 0.1s; }
+.features.reveal.is-visible .feature-card:nth-child(2) { transition-delay: 0.2s; }
+.features.reveal.is-visible .feature-card:nth-child(3) { transition-delay: 0.3s; }
+.features.reveal.is-visible .feature-card:nth-child(4) { transition-delay: 0.4s; }
+
+
+/* Custom animation for Workflow timeline */
+.workflow.timeline .workflow-card {
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.workflow.timeline .workflow-card:nth-child(odd) {
+    transform: translateX(-40px);
+}
+
+.workflow.timeline .workflow-card:nth-child(even) {
+    transform: translateX(40px);
+}
+
+.workflow.timeline.is-visible .workflow-card {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Stagger for timeline cards */
+.workflow.timeline.is-visible .workflow-card:nth-child(1) { transition-delay: 0.1s; }
+.workflow.timeline.is-visible .workflow-card:nth-child(2) { transition-delay: 0.2s; }
+.workflow.timeline.is-visible .workflow-card:nth-child(3) { transition-delay: 0.3s; }
+.workflow.timeline.is-visible .workflow-card:nth-child(4) { transition-delay: 0.4s; }
+
+
+/* Custom animation for CTA section */
+#cta.reveal .contact-form {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+#cta.reveal.is-visible .contact-form {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.portals-grid, .arch-grid, .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.portal-card, .tech-card { background: var(--card); border-radius: 12px; box-shadow: var(--shadow); padding: 20px; }
 .list { margin: 10px 0 0 20px; }
 
 @media (max-width: 900px) {
@@ -763,19 +849,7 @@ footer {
 .overview-media { position: relative; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); }
 .overview-media::before { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, rgba(68,163,70,0.25), rgba(47,126,48,0.1)); }
 .overview-media img { width: 100%; height: auto; display: block; }
-.overview-media .chips { position: absolute; bottom: 14px; left: 14px; display: inline-flex; gap: 8px; }
-.overview-media .chips span { background: rgba(0,0,0,0.35); color: #fff; font-size: 12px; padding: 6px 10px; border-radius: 999px; }
 .overview-points { display: grid; gap: 16px; }
-
-/* Overview stagger */
-.overview.reveal .overview-media,
-.overview.reveal .overview-points .box { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
-.overview.reveal.is-visible .overview-media,
-.overview.reveal.is-visible .overview-points .box { opacity: 1; transform: translateY(0); }
-.overview.reveal.is-visible .overview-media { transition-delay: 0.05s; }
-.overview.reveal.is-visible .overview-points .box:nth-child(1) { transition-delay: 0.1s; }
-.overview.reveal.is-visible .overview-points .box:nth-child(2) { transition-delay: 0.2s; }
-.overview.reveal.is-visible .overview-points .box:nth-child(3) { transition-delay: 0.3s; }
 
 @media (max-width: 900px) {
     .overview-grid { grid-template-columns: 1fr; }
@@ -793,15 +867,74 @@ footer {
 }
 
 /* Workflow redesigned cards */
-.workflow-grid { 
-    display: grid; 
+.workflow-grid {
+    display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    perspective: 1000px; 
-    transform-style: preserve-3d;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* Timeline Container */
+.workflow.timeline .workflow-grid {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 40px 0;
+}
+
+/* The central timeline bar */
+.workflow.timeline .workflow-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 4px;
+    background: var(--surface);
+    border-radius: 2px;
+}
+
+/* Timeline Card Styling */
+.workflow.timeline .workflow-card {
+    width: calc(50% - 40px); /* Half width minus spacing */
+    margin-bottom: 50px;
+    position: relative;
+}
+
+/* Position cards on either side of the timeline */
+.workflow.timeline .workflow-card:nth-child(odd) {
+    align-self: flex-start;
+    margin-right: 40px;
+}
+
+.workflow.timeline .workflow-card:nth-child(even) {
+    align-self: flex-end;
+    margin-left: 40px;
+}
+
+
+
+.workflow.timeline .workflow-card::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    border: 4px solid var(--bg);
+    border-radius: 50%;
+}
+
+/* Position the timeline dots correctly */
+.workflow.timeline .workflow-card:nth-child(odd)::after {
+    right: -60px; /* (width of card margin + half of dot width) */
+}
+
+.workflow.timeline .workflow-card:nth-child(even)::after {
+    left: -60px; /* (width of card margin + half of dot width) */
 }
 
 /* Adjust for medium screens */
@@ -818,6 +951,25 @@ footer {
         grid-template-columns: 1fr;
         max-width: 500px;
     }
+
+    .workflow.timeline .workflow-grid::before {
+        left: 20px;
+        transform: translateX(0);
+    }
+
+        .workflow.timeline .workflow-card,
+    .workflow.timeline .workflow-card:nth-child(odd),
+    .workflow.timeline .workflow-card:nth-child(even) {
+        width: 100%;
+        align-self: auto;
+        margin: 0 0 30px 0;
+        padding-left: 40px;
+    }
+
+    .workflow.timeline .workflow-card::after {
+        left: 10px;
+        right: auto;
+    }
 }
 
 .workflow-card {
@@ -827,10 +979,12 @@ footer {
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
     border: 1px solid var(--card-border, rgba(0, 0, 0, 0.1));
-    height: 100%;
     display: flex;
     flex-direction: column;
-    min-height: 420px;
+}
+
+.workflow-grid > .workflow-card {
+    height: 100%;
 }
 
 .workflow-media {
@@ -947,35 +1101,12 @@ footer {
 .workflow.reveal.is-visible .workflow-card:nth-child(3) { animation-delay: 0.3s; }
 .workflow.reveal.is-visible .workflow-card:nth-child(4) { animation-delay: 0.4s; }
 
-.team { background: linear-gradient(180deg, var(--surface) 0%, transparent 80%); }
-.team .team-slider { --team-gap: 24px; position: relative; max-width: 1100px; margin: 0 auto; overflow: hidden; padding: 24px 64px; }
-.team .team-track { display: flex; gap: var(--team-gap); transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); will-change: transform; }
-.team .member-card { position: relative; width: clamp(340px, 36vw, 200px); flex: 0 0 clamp(340px, 36vw, 200px); border-radius: 24px; overflow: hidden; background: var(--card); box-shadow: 0 10px 24px rgba(0,0,0,0.12); }
-.team .member-media { height: 400px; }
-.team .member-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.team .member-card::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.18); pointer-events: none; transition: 0.3s; }
-.team .member-card.active::before { background: rgba(0,0,0,0); }
-.team .member-content { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 20px; background: rgba(0,0,0,0.85); color: #fff; }
-.team .member-content h3 { font-size: 18px; margin-bottom: 8px; color: #fff; }
-.team .member-content p { opacity: 0.95; }
-.team .member-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.team .member-card.active { transform: scale(1.02); box-shadow: 0 16px 36px rgba(0,0,0,0.18); }
-.team .member-card:not(.active) { opacity: 0.45; filter: grayscale(0.2); }
-.team .slider-controls { position: absolute; top: 50%; transform: translateY(-50%); left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; }
-.team .slider-controls button { width: 44px; height: 44px; border: none; border-radius: 999px; background: var(--card); color: var(--text); box-shadow: var(--shadow); font-size: 20px; line-height: 1; }
-.team .slider-controls button:hover { transform: translateY(-1px); }
-.team .dots { display: flex; justify-content: center; gap: 10px; margin-top: 16px; }
-.team .dots button { width: 8px; height: 8px; border-radius: 999px; border: 2px solid var(--surface); background: var(--surface); }
-.team .dots button.active { background: var(--primary); border-color: var(--primary); }
-
-
-
 @media (max-width: 700px) {
   .footer-grid { grid-template-columns: 1fr; }
   .footer-brand { text-align: center; }
   .footer-links ul { justify-items: center; }
   .footer-bottom { justify-content: center; }
-  .team .team-slider { --team-gap: 16px; padding: 16px 44px; }
+
   .team .member-card { width: 88vw; flex-basis: 88vw; margin: 0 auto; }
 }
 
