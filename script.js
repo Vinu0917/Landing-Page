@@ -202,4 +202,125 @@ document.addEventListener("DOMContentLoaded", function () {
     hero.addEventListener("mousemove", handleHeroMove);
     hero.addEventListener("mouseleave", resetHeroMove);
   }
+
+  // Team Slider Functionality
+  var teamContainer = document.querySelector(".team-container");
+  var teamCards = document.querySelectorAll(".team-card");
+  var teamPrev = document.querySelector(".team-prev");
+  var teamNext = document.querySelector(".team-next");
+  var teamDots = document.querySelectorAll(".team-dot");
+  
+  if (teamContainer && teamCards.length > 0) {
+    var currentSlide = 0;
+    var cardWidth = 324; // 300px card + 24px gap
+    var isDragging = false;
+    var startX = 0;
+    var currentTranslate = 0;
+    var prevTranslate = 0;
+    var animationID = null;
+    
+    function updateSlider() {
+      teamContainer.style.transform = "translateX(-" + (currentSlide * cardWidth) + "px)";
+      
+      // Update dots
+      teamDots.forEach(function(dot, index) {
+        dot.classList.toggle("active", index === currentSlide);
+      });
+    }
+    
+    function goToSlide(slideIndex) {
+      var maxSlide = Math.max(0, teamCards.length - Math.floor(teamContainer.parentElement.offsetWidth / cardWidth));
+      currentSlide = Math.max(0, Math.min(slideIndex, maxSlide));
+      updateSlider();
+    }
+    
+    function nextSlide() {
+      goToSlide(currentSlide + 1);
+    }
+    
+    function prevSlide() {
+      goToSlide(currentSlide - 1);
+    }
+    
+    // Navigation buttons
+    if (teamPrev) teamPrev.addEventListener("click", prevSlide);
+    if (teamNext) teamNext.addEventListener("click", nextSlide);
+    
+    // Dot navigation
+    teamDots.forEach(function(dot, index) {
+      dot.addEventListener("click", function() {
+        goToSlide(index);
+      });
+    });
+    
+    // Touch/swipe support
+    function touchStart(e) {
+      isDragging = true;
+      teamContainer.style.transition = "none";
+      startX = e.type.includes("mouse") ? e.clientX : e.touches[0].clientX;
+      animationID = requestAnimationFrame(animation);
+    }
+    
+    function touchMove(e) {
+      if (!isDragging) return;
+      e.preventDefault();
+      var currentX = e.type.includes("mouse") ? e.clientX : e.touches[0].clientX;
+      var diff = currentX - startX;
+      currentTranslate = prevTranslate + diff;
+      teamContainer.style.transform = "translateX(" + currentTranslate + "px)";
+    }
+    
+    function touchEnd() {
+      isDragging = false;
+      cancelAnimationFrame(animationID);
+      var movedBy = currentTranslate - prevTranslate;
+      
+      if (movedBy < -100 && currentSlide < teamCards.length - 1) {
+        currentSlide++;
+      } else if (movedBy > 100 && currentSlide > 0) {
+        currentSlide--;
+      }
+      
+      teamContainer.style.transition = "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)";
+      updateSlider();
+      prevTranslate = currentTranslate = -currentSlide * cardWidth;
+    }
+    
+    function animation() {
+      if (isDragging) requestAnimationFrame(animation);
+      setSliderPosition();
+    }
+    
+    function setSliderPosition() {
+      teamContainer.style.transform = "translateX(" + currentTranslate + "px)";
+    }
+    
+    // Mouse events
+    teamContainer.addEventListener("mousedown", touchStart);
+    teamContainer.addEventListener("mousemove", touchMove);
+    teamContainer.addEventListener("mouseup", touchEnd);
+    teamContainer.addEventListener("mouseleave", touchEnd);
+    teamContainer.addEventListener("transitionend", function() {
+      teamContainer.style.transition = "";
+    });
+    
+    // Touch events
+    teamContainer.addEventListener("touchstart", touchStart);
+    teamContainer.addEventListener("touchmove", touchMove);
+    teamContainer.addEventListener("touchend", touchEnd);
+    
+    // Keyboard navigation
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "ArrowLeft") prevSlide();
+      if (e.key === "ArrowRight") nextSlide();
+    });
+    
+    // Auto-resize on window resize
+    window.addEventListener("resize", function() {
+      updateSlider();
+    });
+    
+    // Initialize slider position
+    updateSlider();
+  }
 });
