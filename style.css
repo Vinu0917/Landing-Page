@@ -44,19 +44,21 @@ header {
     width: 100%;
     padding: 15px 40px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     background: var(--card);
     box-shadow: var(--shadow);
     position: sticky;
     top: 0;
     z-index: 1000;
+    gap: 30px;
 }
 
 header .logo {
     display: flex;
     align-items: center;
     height: 40px;
+    margin-right: auto;
 }
 
 header .logo img {
@@ -69,8 +71,7 @@ nav {
     display: flex;
     align-items: center;
     gap: 30px;
-    flex: 1;
-    justify-content: center;
+    flex: none;
 }
 
 nav a {
