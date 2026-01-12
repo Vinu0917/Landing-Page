@@ -356,7 +356,7 @@ header.scrolled { background: rgba(255, 255, 255, 0.85); box-shadow: 0 20px 40px
 
 /* Hero Section */
 .hero {
-    padding: 140px 32px 100px;
+    padding: 80px 32px 60px;
     background: linear-gradient(135deg, #fdfbf7 0%, #e6f7ef 100%);
     position: relative;
     overflow: hidden;
