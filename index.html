@@ -45,19 +45,17 @@
     <!-- STYLE -->
     <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-    <a class="skip-link" href="#overview">Skip to content</a>
     <!-- HEADER -->
     <header>
-        <a href="#" class="logo"><img src="images/HelaBojunhala.png" alt="Hela Bojunhala Logo" /></a>
+        <a href="#" class="logo"><img src="images/Logo.png" alt="Hela Bojunhala Logo" /></a>
         <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
         <nav id="site-nav">
             <a href="#overview">Overview</a>
             <a href="#features">Key Features</a>
             <a href="#workflow">How It Works</a>
+            <a href="#team">Meet Our Team</a>
             <a href="#cta">Contact</a>
-            <button class="theme-toggle" aria-label="Toggle dark mode">◐</button>
         </nav>
     </header>
 
@@ -75,7 +73,7 @@
         </div>
         <div class="hero-visual">
             <div class="phone-mock">
-                <img src="images/welcomepage.png" alt="Mobile app prototype" />
+                <img src="images/Web ui pic.png" alt="Mobile app prototype" />
             </div>
         </div>
         </div>
@@ -178,73 +176,123 @@
     </section>
 
     <!-- HOW IT WORKS -->
-    <section id="workflow" class="workflow timeline reveal">
-        <h2>Our Process from Start to Finish</h2>
-        <p class="section-text">A clear, coordinated flow across roles—illustrated with real app views.</p>
+    <section id="workflow" class="workflow reveal">
+        <h2>Our Process Journey</h2>
+        <p class="section-text">Experience the seamless flow from customer order to delivery completion</p>
 
-        <div class="workflow-grid">
-            <div class="workflow-card">
-                <div class="workflow-media">
-                    <img src="images/Browse&Order.jpg" alt="Browse & Order" />
-                    <span class="badge">1. Customer</span>
+        <div class="workflow-map">
+            <!-- Connection Path -->
+            <div class="workflow-path">
+                <svg class="path-svg" viewBox="0 0 1200 200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#106e44;stop-opacity:0.3" />
+                            <stop offset="100%" style="stop-color:#106e44;stop-opacity:0.8" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M 150 100 Q 300 50 450 100 T 750 100 Q 900 50 1050 100" 
+                          stroke="url(#pathGradient)" 
+                          stroke-width="3" 
+                          fill="none"
+                          stroke-dasharray="8,4"
+                          opacity="0.8"/>
+                </svg>
+            </div>
+
+            <!-- Workflow Steps -->
+            <div class="workflow-steps">
+                <div class="workflow-step" data-step="1">
+                    <div class="step-icon">
+                        <div class="icon-circle">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 2L3 7v13a2 2 0 002 2h14a2 2 0 002-2V7l-6-5z"/>
+                                <polyline points="3 7 12 13 21 7"/>
+                                <path d="M12 22V12"/>
+                            </svg>
+                        </div>
+                        <span class="step-number">1</span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Browse & Order</h3>
+                        <p>Customers explore authentic menus, apply health filters, and place secure orders to their preferred branch</p>
+                        <div class="step-features">
+                            <span class="feature-tag">🍽 Authentic Menus</span>
+                            <span class="feature-tag">🥗 Health Filters</span>
+                            <span class="feature-tag">🔒 Secure Checkout</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="workflow-content">
-                    <h3>Browse & Order</h3>
-                    <p>Customers explore menus, apply filters, and place orders to a selected branch.</p>
-                    <ul class="list mini">
-                        <li>Authentic menus</li>
-                        <li>Health & ingredient filters</li>
-                        <li>Secure checkout</li>
-                    </ul>
+
+                <div class="workflow-step" data-step="2">
+                    <div class="step-icon">
+                        <div class="icon-circle">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"/>
+                                <circle cx="20" cy="21" r="1"/>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+                            </svg>
+                        </div>
+                        <span class="step-number">2</span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Confirm & Manage</h3>
+                        <p>Cashiers review incoming orders, process payments efficiently, and update order status in real-time</p>
+                        <div class="step-features">
+                            <span class="feature-tag">📋 Order Queue</span>
+                            <span class="feature-tag">💳 Payment Processing</span>
+                            <span class="feature-tag">📊 Status Updates</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-step" data-step="3">
+                    <div class="step-icon">
+                        <div class="icon-circle">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <span class="step-number">3</span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Assign & Deliver</h3>
+                        <p>Drivers receive smart assignments, navigate optimized routes, and provide real-time delivery updates</p>
+                        <div class="step-features">
+                            <span class="feature-tag">🚗 Auto Assignment</span>
+                            <span class="feature-tag">🗺️ Route Tracking</span>
+                            <span class="feature-tag">📍 Live Updates</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-step" data-step="4">
+                    <div class="step-icon">
+                        <div class="icon-circle">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="20" x2="18" y2="10"/>
+                                <line x1="12" y1="20" x2="12" y2="4"/>
+                                <line x1="6" y1="20" x2="6" y2="14"/>
+                            </svg>
+                        </div>
+                        <span class="step-number">4</span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Monitor & Optimize</h3>
+                        <p>Administrators track performance metrics, manage inventory, and generate insights for continuous improvement</p>
+                        <div class="step-features">
+                            <span class="feature-tag">📈 Analytics</span>
+                            <span class="feature-tag">📦 Inventory Control</span>
+                            <span class="feature-tag">🏢 Branch Overview</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="workflow-card">
-                <div class="workflow-media">
-                    <img src="images/Confirm.jpg" alt="Confirm & Manage" />
-                    <span class="badge">2. Cashier</span>
-                </div>
-                <div class="workflow-content">
-                    <h3>Confirm & Manage</h3>
-                    <p>Cashiers review incoming orders, process payments, and update statuses.</p>
-                    <ul class="list mini">
-                        <li>Order queue</li>
-                        <li>Payments & receipts</li>
-                        <li>Status updates</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="workflow-card">
-                <div class="workflow-media">
-                    <img src="images/Assign & Deliver.jpg" alt="Assign & Deliver" />
-                    <span class="badge">3. Driver</span>
-                </div>
-                <div class="workflow-content">
-                    <h3>Assign & Deliver</h3>
-                    <p>Drivers receive assignments and navigate optimized routes for timely delivery.</p>
-                    <ul class="list mini">
-                        <li>Auto assignment</li>
-                        <li>Route tracking</li>
-                        <li>Status updates</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="workflow-card">
-                <div class="workflow-media">
-                    <img src="images/Monitor.jpg" alt="Monitor & Optimize" />
-                    <span class="badge">4. Admin</span>
-                </div>
-                <div class="workflow-content">
-                    <h3>Monitor & Optimize</h3>
-                    <p>Admins track performance, manage stock, and generate insights to improve service.</p>
-                    <ul class="list mini">
-                        <li>Analytics & reports</li>
-                        <li>Inventory control</li>
-                        <li>Branch overview</li>
-                    </ul>
-                </div>
+            <!-- Animated Elements -->
+            <div class="workflow-dots">
+                <div class="moving-dot dot-1"></div>
+                <div class="moving-dot dot-2"></div>
+                <div class="moving-dot dot-3"></div>
             </div>
         </div>
     </section>
@@ -361,7 +409,7 @@
         <div class="footer-inner">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="footer-logo"><img src="images/HelaBojunhala.png" alt="Hela Bojunhala Logo" /></div>
+                    <div class="footer-logo"><img src="images/Logo.png" alt="Hela Bojunhala Logo" /></div>
                     <div class="footer-social">
                         <a href="https://www.linkedin.com/company/futureforgelk/?viewAsMember=true" aria-label="LinkedIn" title="LinkedIn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
